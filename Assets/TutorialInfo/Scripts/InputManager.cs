@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
     
    
     [SerializeField] private CinemachineCamera freeLookCamera;
+    [SerializeField] private PlayerMove playerMove;
     public UnityEvent<Vector3> OnMove = new UnityEvent<Vector3>();
     public UnityEvent OnSpacePressed = new UnityEvent();
     private int score = 0;
@@ -53,11 +54,11 @@ public class InputManager : MonoBehaviour
         {
             input += (Vector3)  freeLookCamera.transform.right;
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            input.y = 1;
+            input.y = 350;
         } else{
-            input.y = 0;
+            input.y = -2;
         }
 
         OnMove.Invoke(input);
