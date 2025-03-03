@@ -16,4 +16,15 @@ public class Spin : MonoBehaviour
         transform.Rotate(Vector3.forward, speed * Time.deltaTime);
         
     }
+    public int scoreValue = 10;
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            InputManager.Instance.AddScore(scoreValue);
+            Destroy(gameObject); // destroys the asteroid
+            
+        }
+    }
 }
