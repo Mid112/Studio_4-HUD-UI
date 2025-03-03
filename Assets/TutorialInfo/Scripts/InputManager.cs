@@ -59,10 +59,8 @@ public class InputManager : MonoBehaviour
         } else{
             input.y = 0;
         }
-        
-        OnMove.Invoke(input);
-        
 
+        OnMove.Invoke(input);
         
     }
      public void AddScore(int scoreToAdd)

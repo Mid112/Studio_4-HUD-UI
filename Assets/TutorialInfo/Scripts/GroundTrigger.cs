@@ -5,6 +5,7 @@ public class GroundTrigger : MonoBehaviour
 {
     
     [SerializeField] private PlayerMove playerMove;
+    public bool isGrounded;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
@@ -12,15 +13,15 @@ public class GroundTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            playerMove.isGrounded = true;
+            isGrounded = true;
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (playerMove.isGrounded)
+        if (isGrounded)
         {
-            playerMove.isGrounded = false;
+            isGrounded = false;
         }
     }
 }
