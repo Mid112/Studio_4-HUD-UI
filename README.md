@@ -1,4 +1,4 @@
-#Functionality Implemented: 
+# Functionality Implemented: 
 - Spinning Coins that update score and get destroyed on contact
 - Invisible wall that prevent player from leaving
 - Score is displayed in bottom left
