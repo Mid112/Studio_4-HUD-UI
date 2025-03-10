@@ -6,22 +6,26 @@ using TMPro;
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance;
-    
-   
+
+
     [SerializeField] private CinemachineCamera freeLookCamera;
     [SerializeField] private PlayerMove playerMove;
+    [SerializeField] private CoinCounterUI coinCounter;
     public UnityEvent<Vector3> OnMove = new UnityEvent<Vector3>();
     public UnityEvent OnSpacePressed = new UnityEvent();
     private int score = 0;
+    public int jumpForce = 10;
     public TextMeshProUGUI scoreText;
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         // executing singleton pattern
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
         else
         {
@@ -29,10 +33,6 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        UpdateScoreUI();
-    }
 
     // Update is called once per frame
     void Update()
@@ -40,39 +40,42 @@ public class InputManager : MonoBehaviour
         Vector3 input = Vector3.zero;
         if (Input.GetKey(KeyCode.W))
         {
-            input += (Vector3) freeLookCamera.transform.forward;
+            input += (Vector3)freeLookCamera.transform.forward;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            input -= (Vector3)  freeLookCamera.transform.forward;
+            input -= (Vector3)freeLookCamera.transform.forward;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            input -= (Vector3)  freeLookCamera.transform.right;
+            input -= (Vector3)freeLookCamera.transform.right;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            input += (Vector3)  freeLookCamera.transform.right;
+            input += (Vector3)freeLookCamera.transform.right;
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            input.y = 300;
+            input.y = jumpForce;
         }
 
         OnMove.Invoke(input);
-        
+
     }
-     public void AddScore(int scoreToAdd)
+
+    public void IncreaseScore()
     {
-        score += scoreToAdd;
-        scoreText.text = "Score: " + score;
+        score++;
+        UpdateScoreUI();
+
     }
 
     void UpdateScoreUI()
     {
-        if(scoreText != null)
+        if (scoreText != null)
         {
-            scoreText.text = "Score: " + score; // Method to constantly update UI text
+            coinCounter.UpdateScore(score);
         }
     }
+
 }

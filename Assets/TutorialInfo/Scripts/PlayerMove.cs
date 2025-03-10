@@ -23,12 +23,13 @@ public class PlayerMove : MonoBehaviour
         Vector3 moveDirection = input;
         if (!groundTrigger.isGrounded)
         {
-            moveDirection.y = -1;
+            moveDirection.y = 0;
             moveDirection.x = moveDirection.x * 0.1f;
             moveDirection.z = moveDirection.z * 0.1f;
         }
         
-        rb.AddForce(moveDirection * speed);
+        rb.AddForce(moveDirection * speed);  
+        
         
     }
 
