@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "COSC_416_Assignment_3.sln"
+    "dotnet.defaultSolution": "Studio_4-HUD-UI.sln"
 }

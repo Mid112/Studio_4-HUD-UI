@@ -56,9 +56,7 @@ public class InputManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            input.y = 350;
-        } else{
-            input.y = -2;
+            input.y = 300;
         }
 
         OnMove.Invoke(input);

@@ -6,7 +6,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private InputManager inputManager;
     [SerializeField] private GroundTrigger groundTrigger;
     private Rigidbody rb;
-    public bool isGrounded;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,25 +16,17 @@ public class PlayerMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        isGrounded = groundTrigger.isGrounded;
-    }
 
-    void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-    }
+    
     void MovePlayer(Vector3 input)
     {
         Vector3 moveDirection = input;
+        if (!groundTrigger.isGrounded)
+        {
+            moveDirection.y = -1;
+            moveDirection.x = moveDirection.x * 0.1f;
+            moveDirection.z = moveDirection.z * 0.1f;
+        }
         
         rb.AddForce(moveDirection * speed);
         
