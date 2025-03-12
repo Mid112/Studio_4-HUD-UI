@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4264962234089911353}
   - component: {fileID: 381887241346453196}
   - component: {fileID: 8179195722226187877}
-  - component: {fileID: -6894131910426556676}
+  - component: {fileID: 8136803635990939580}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Finish
@@ -125,8 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 100
-  scoreValue: 10
---- !u!114 &-6894131910426556676
+--- !u!114 &8136803635990939580
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,4 +137,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e185a007bc54a96a7a9db34709ddb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreValue: 10
