@@ -743,7 +743,7 @@ MonoBehaviour:
   OnSpacePressed:
     m_PersistentCalls:
       m_Calls: []
-  jumpForce: 100
+  jumpForce: 65
   scoreText: {fileID: 662780496}
 --- !u!4 &249559875
 Transform:
@@ -1672,7 +1672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbe5a4dc1878497eaf1ecd720cbd351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 15
   inputManager: {fileID: 249559874}
   groundTrigger: {fileID: 1542308553}
 --- !u!1 &662780494
