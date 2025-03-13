@@ -11,7 +11,12 @@ public class InputManager : MonoBehaviour
     [SerializeField] private CinemachineCamera freeLookCamera;
     [SerializeField] private PlayerMove playerMove;
     [SerializeField] private CoinCounterUI coinCounter;
+    [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private InputManager inputManager;
+    private bool isSettingsMenuActive;
+    public bool IsSettingsMenuActive => isSettingsMenuActive;
     public UnityEvent<Vector3> OnMove = new UnityEvent<Vector3>();
+    public UnityEvent OnSettingsMenu = new();
     public UnityEvent OnSpacePressed = new UnityEvent();
     private int score = 0;
     public int jumpForce = 10;
@@ -26,6 +31,8 @@ public class InputManager : MonoBehaviour
             Instance = this;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            inputManager.OnSettingsMenu.AddListener(ToggleSettingsMenu);
+            DisableSettingsMenu();
         }
         else
         {
@@ -37,6 +44,14 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            OnSettingsMenu?.Invoke();
+        }
+        if(InputManager.Instance.IsSettingsMenuActive)
+        {
+            return;
+        }
         Vector3 input = Vector3.zero;
         if (Input.GetKey(KeyCode.W))
         {
@@ -76,6 +91,43 @@ public class InputManager : MonoBehaviour
         {
             coinCounter.UpdateScore(score);
         }
+    }
+
+    private void ToggleSettingsMenu()
+    {
+        if (isSettingsMenuActive)
+        {
+            DisableSettingsMenu();
+        }
+        else
+        {
+            EnableSettingsMenu();
+        }
+    }
+    private void EnableSettingsMenu()
+    {
+        Time.timeScale = 0f;
+        settingsMenu.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        isSettingsMenuActive = true;
+    }
+    public void DisableSettingsMenu()
+    {
+        Time.timeScale = 1f;
+        settingsMenu.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        isSettingsMenuActive = false;
+    }
+
+    public void QuitGame()
+    {
+    #if UNITY_EDITOR
+    UnityEditor.EditorApplication.isPlaying = false;
+    #else
+    Application.Quit();
+    #endif
     }
 
 }

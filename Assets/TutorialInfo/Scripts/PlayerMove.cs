@@ -31,6 +31,10 @@ public class PlayerMove : MonoBehaviour
         rb.AddForce(moveDirection * speed);  
         
         
+    } 
+    public void UpdatePlayerSpeed(float newSpeed)
+    {
+        speed = newSpeed;
     }
 
 }
